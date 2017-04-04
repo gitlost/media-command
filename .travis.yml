@@ -1,9 +1,11 @@
 sudo: false
-apt:
-  packages:
-  - php-imagick
 
 language: php
+
+addons:
+  apt:
+    packages:
+    - php-imagick
 
 notifications:
   email:
