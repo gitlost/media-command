@@ -32,8 +32,8 @@ matrix:
       env: WP_VERSION=trunk
       addons:
         apt:
-		  sources:
-		  - sourceline 'deb http://ppa.launchpad.net/ondrej/php/ubuntu precise main'
+          sources:
+          - sourceline 'deb http://ppa.launchpad.net/ondrej/php/ubuntu precise main'
           packages:
           - php-imagick
     - php: 5.3
