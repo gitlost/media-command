@@ -13,7 +13,7 @@ install_imagemagick() {
 	tar xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
 	cd ImageMagick-$IMAGEMAGICK_VERSION
 
-	./configure --prefix=$HOME/opt
+	./configure --prefix=$HOME/opt/$TRAVIS_PHP_VERSION
 	make
 	make install
 
@@ -22,15 +22,15 @@ install_imagemagick() {
 
 if [[ ${TRAVIS_PHP_VERSION:0:2} == '7.' ]]; then
 
-	PATH=$HOME/opt/bin:$PATH convert -v | grep $IMAGEMAGICK_VERSION || install_imagemagick
+	PATH=$HOME/opt/$TRAVIS_PHP_VERSION/bin:$PATH convert -v | grep $IMAGEMAGICK_VERSION || install_imagemagick
 
-	ls $HOME/opt
+	ls $HOME/opt/$TRAVIS_PHP_VERSION
 
-	export LD_FLAGS=-L$HOME/opt/lib
-	export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/lib
-	export CPATH=$CPATH:$HOME/opt/include
+	export LD_FLAGS=-L$HOME/opt/$TRAVIS_PHP_VERSION/lib
+	export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/$TRAVIS_PHP_VERSION/lib
+	export CPATH=$CPATH:$HOME/opt/$TRAVIS_PHP_VERSION/include
 
-	echo $HOME/opt | pecl install imagick
+	echo $HOME/opt/$TRAVIS_PHP_VERSION | pecl install imagick
 
 elif [[ $TRAVIS_PHP_VERSION == 5.6 ]]; then
 
