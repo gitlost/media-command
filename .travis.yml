@@ -14,6 +14,8 @@ branches:
 cache:
   - composer
   - $HOME/.composer/cache
+  directories:
+    - $HOME/opt
 
 env:
   global:
@@ -27,7 +29,7 @@ matrix:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - if [[ ${TRAVIS_PHP_VERSION:0:2} = '7.' ]]; then ./bin/install-imagick.sh; fi
+  - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then ./bin/install-imagick.sh; fi
   - php -m
 
 install:

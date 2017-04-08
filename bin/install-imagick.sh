@@ -6,17 +6,21 @@ set -ex
 
 IMAGEMAGICK_VERSION='6.9.8-3'
 
-cd /tmp
+install_imagemagick() {
+	cd /tmp
 
-curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
-tar xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
-cd ImageMagick-$IMAGEMAGICK_VERSION
+	curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
+	tar xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
+	cd ImageMagick-$IMAGEMAGICK_VERSION
 
-./configure --prefix=$HOME/opt
-make
-make install
+	./configure --prefix=$HOME/opt
+	make
+	make install
 
-cd $TRAVIS_BUILD_DIR
+	cd $TRAVIS_BUILD_DIR
+}
+
+PATH=$HOME/opt/bin:$PATH convert -v | grep $IMAGEMAGICK_VERSION || install_imagemagick
 
 ls $HOME/opt
 
