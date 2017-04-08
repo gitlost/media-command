@@ -4,6 +4,7 @@ set -ex
 
 # Taken from http://stackoverflow.com/a/41138688/664741
 
+# ImageMagick version to use for PHP 7.x
 IMAGEMAGICK_VERSION='6.9.8-3'
 
 install_imagemagick() {
