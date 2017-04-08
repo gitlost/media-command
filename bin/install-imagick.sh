@@ -2,12 +2,14 @@
 
 set -ex
 
+# Taken from http://stackoverflow.com/a/41138688/664741
+
 IMAGEMAGICK_VERSION='6.9.8-3'
 
 cd /tmp
 
 curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
-tar xvzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
+tar xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
 cd ImageMagick-$IMAGEMAGICK_VERSION
 
 ./configure --prefix=$HOME/opt
@@ -18,4 +20,8 @@ cd $TRAVIS_BUILD_DIR
 
 ls $HOME/opt
 
-echo "$HOME/opt\n" | pecl install imagick
+export LD_FLAGS=-L$HOME/opt/lib
+export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/lib
+export CPATH=$CPATH:$HOME/opt/include
+
+echo $HOME/opt | pecl install imagick
