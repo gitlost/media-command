@@ -34,7 +34,7 @@ matrix:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - if [[ ${TRAVIS_PHP_VERSION:0:2} = '7.' ]]; then ./bin/install_imagick.sh; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:2} = '7.' ]]; then ./bin/install-imagick.sh; fi
   - php -m
 
 install:
