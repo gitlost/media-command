@@ -25,6 +25,12 @@ matrix:
   include:
     - php: 7.0
       env: WP_VERSION=latest
+    - php: 5.6
+      env: WP_VERSION=latest
+      addons:
+        apt:
+          packages:
+            - php5-imagick
 
 before_install:
   - phpenv config-rm xdebug.ini
