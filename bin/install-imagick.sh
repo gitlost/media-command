@@ -20,12 +20,19 @@ install_imagemagick() {
 	cd $TRAVIS_BUILD_DIR
 }
 
-PATH=$HOME/opt/bin:$PATH convert -v | grep $IMAGEMAGICK_VERSION || install_imagemagick
+if [[ $TRAVIS_PHP_VERSION == '7.0' ]]; then
 
-ls $HOME/opt
+	PATH=$HOME/opt/bin:$PATH convert -v | grep $IMAGEMAGICK_VERSION || install_imagemagick
 
-export LD_FLAGS=-L$HOME/opt/lib
-export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/lib
-export CPATH=$CPATH:$HOME/opt/include
+	ls $HOME/opt
 
-echo $HOME/opt | pecl install imagick
+	export LD_FLAGS=-L$HOME/opt/lib
+	export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/lib
+	export CPATH=$CPATH:$HOME/opt/include
+
+	echo $HOME/opt | pecl install imagick
+
+elif [[ $TRAVIS_PHP_VERSION == 5.6 ]]; then
+
+	echo | pecl install imagick
+fi
