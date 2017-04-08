@@ -20,13 +20,6 @@ env:
     - PATH="$TRAVIS_BUILD_DIR/vendor/bin:$PATH"
     - WP_CLI_BIN_DIR="$TRAVIS_BUILD_DIR/vendor/bin"
 
-addons:
-  apt:
-    packages:
-      - libjpeg-dev
-      - libpng-dev
-      - libgif-dev
-
 matrix:
   include:
     - php: 7.0
