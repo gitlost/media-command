@@ -2,6 +2,7 @@
 
 set -ex
 
+# Install imagick for PHP 5.6, 7.0 and 7.1.
 # Taken from http://stackoverflow.com/a/41138688/664741
 
 # ImageMagick version to use for PHP 7.x
