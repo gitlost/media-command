@@ -13,7 +13,9 @@ branches:
 
 cache:
   - composer
-  - $HOME/.composer/cache
+  - directories:
+    - $HOME/.composer/cache
+    - $HOME/opt/$TRAVIS_PHP_VERSION
 
 env:
   global:
@@ -35,7 +37,7 @@ matrix:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then printf "\n" | pecl install imagick; fi
+  - ./bin/install-imagick.sh
   - php -m
 
 install:
