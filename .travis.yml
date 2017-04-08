@@ -15,7 +15,7 @@ cache:
   - composer
   - directories:
     - $HOME/.composer/cache
-    - $HOME/opt
+    - $HOME/opt/$TRAVIS_PHP_VERSION
 
 env:
   global:
