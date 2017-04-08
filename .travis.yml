@@ -14,8 +14,7 @@ branches:
 cache:
   - composer
   - $HOME/.composer/cache
-  directories:
-    - $HOME/opt
+  - $HOME/opt
 
 env:
   global:
