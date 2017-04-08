@@ -20,7 +20,7 @@ install_imagemagick() {
 	cd $TRAVIS_BUILD_DIR
 }
 
-if [[ $TRAVIS_PHP_VERSION == '7.0' ]]; then
+if [[ ${TRAVIS_PHP_VERSION:0:2} == '7.' ]]; then
 
 	PATH=$HOME/opt/bin:$PATH convert -v | grep $IMAGEMAGICK_VERSION || install_imagemagick
 
