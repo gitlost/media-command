@@ -74,16 +74,17 @@ Feature: Manage WordPress attachments
       | path                        | url                                              |
       | {CACHE_DIR}/large-image.jpg | http://wp-cli.org/behat-data/large-image.jpg     |
 
-    When I run `wp media import {CACHE_DIR}/large-image.jpg --import_only`
+    When I run `wp media import {CACHE_DIR}/large-image.jpg --skip-copy`
     Then STDOUT should contain:
       """
       Imported file
       """
     And STDOUT should contain:
       """
-      Success: Imported 1 of 1
+      Success: Imported 1 of 1 items.
       """
     And the {CACHE_DIR}/large-image.jpg file should exist
+    And the wp-content/uploads/large-image.jpg file should not exist
     And the return code should be 0
 
 
