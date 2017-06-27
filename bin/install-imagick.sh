@@ -3,7 +3,7 @@
 set -ex
 
 # ImageMagick/Imagick versions to use.
-IMAGEMAGICK_VERSION='6.5.3-10'
+IMAGEMAGICK_VERSION='6.5.4-10'
 IMAGICK_VERSION='3.4.3'
 
 # Based on http://stackoverflow.com/a/41138688/664741
