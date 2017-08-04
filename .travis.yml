@@ -32,9 +32,10 @@ matrix:
 before_install:
   - phpenv config-rm xdebug.ini
   - bash bin/install-imagick.sh
+  - sudo apt-get install ghostscript
+  - gs -v
   - php -m
   - php --info | grep -i 'imagick\|imagemagick'
-  - gs -v
 
 install:
   - composer require wp-cli/wp-cli:dev-master
