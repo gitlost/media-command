@@ -41,14 +41,11 @@ matrix:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - if [[ $TRAVIS_SUDO ]]; then sudo apt-get -qq update; fi
-  - if [[ $TRAVIS_SUDO ]]; then sudo apt-get install -y ghostscript; fi
+  - bash bin/install-ghostscript.sh
   - gs -v
   - bash bin/install-imagick.sh
   - php -m
   - php --info | grep -i 'imagick\|imagemagick'
-  - bash bin/install-imagick.sh
-  - php -m
 
 install:
   - composer require wp-cli/wp-cli:dev-master
