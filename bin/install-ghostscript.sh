@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-set -ex
-
 if [[ ! $TRAVIS_SUDO ]]; then
 	return true
 fi
+
+set -ex
+
 sudo apt-get -qq update
 sudo apt-get install -y ghostscript
