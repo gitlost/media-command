@@ -33,6 +33,8 @@ before_install:
   - phpenv config-rm xdebug.ini
   - bash bin/install-imagick.sh
   - php -m
+  - php --info | grep -i 'imagick\|imagemagick'
+  - gs -v
 
 install:
   - composer require wp-cli/wp-cli:dev-master
