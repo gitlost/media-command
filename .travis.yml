@@ -28,14 +28,27 @@ matrix:
       env: WP_VERSION=latest
     - php: 7.0
       env: WP_VERSION=latest
+    - php: 5.6
+      env: WP_VERSION=latest
+    - php: 5.6
+      env: WP_VERSION=3.7.11
+    - php: 5.6
+      env: WP_VERSION=trunk
+    - php: 5.3
+      dist: precise
+      sudo: false
+      env: WP_VERSION=latest
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - bash bin/install-imagick.sh
-  - sudo apt-get install ghostscript
+  - if [[ $TRAVIS_SUDO ]]; then sudo apt-get -qq update
+  - if [[ $TRAVIS_SUDO ]]; then sudo apt-get install -y ghostscript
   - gs -v
+  - bash bin/install-imagick.sh
   - php -m
   - php --info | grep -i 'imagick\|imagemagick'
+  - bash bin/install-imagick.sh
+  - php -m
 
 install:
   - composer require wp-cli/wp-cli:dev-master
