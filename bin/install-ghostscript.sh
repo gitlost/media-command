@@ -2,7 +2,7 @@
 
 set -ex
 
-if [[ $TRAVIS_SUDO ]]; then
+if [[ "$TRAVIS_SUDO" = true ]]; then
 	sudo apt-get -qq update
 	sudo apt-get install -y ghostscript
 else
