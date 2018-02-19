@@ -1,4 +1,0 @@
-    - php: 5.6
-      env: WP_VERSION=3.9
-    - php: 5.6
-      env: WP_VERSION=4.2

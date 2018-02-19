@@ -1122,10 +1122,14 @@ Feature: Regenerate WordPress attachments
     And STDERR should be empty
 
   # Audio/video `_cover_hash` meta, used to determine if sub attachment, added in WP 3.9
-  @require-wp-3.9
-  Scenario: Regenerating audio with thumbnail
+  # Test on PHP 5.6 latest only, and iterate over various WP versions.
+  @require-wp-latest @require-php-5.6 @less-than-php-7.0
+  Scenario Outline: Regenerating audio with thumbnail
     # If version is trunk/latest then can get warning about checksums not being available, so STDERR may or may not be empty
-    Given download:
+    Given I try `wp core download --version=<version> --force`
+    Then the return code should be 0
+    And I run `wp core update-db`
+    And download:
       | path                                     | url                                                       |
       | {CACHE_DIR}/audio-with-400x300-cover.mp3 | http://wp-cli.org/behat-data/audio-with-400x300-cover.mp3 |
       | {CACHE_DIR}/audio-with-no-cover.mp3      | http://wp-cli.org/behat-data/audio-with-no-cover.mp3      |
@@ -1171,6 +1175,13 @@ Feature: Regenerate WordPress attachments
       Success: Regenerated 1 of 1 images.
       """
     And STDERR should be empty
+
+    Examples:
+      | version |
+      | latest  |
+      | trunk   |
+      | 4.2     |
+      | 3.9     |
 
   # Video cover support requires ID3 library 1.9.9, updated WP 4.3 https://core.trac.wordpress.org/ticket/32806
   @require-wp-4.3
