@@ -1233,7 +1233,7 @@ Feature: Regenerate WordPress attachments
   Scenario: Regenerate image uploaded with no sizes metadata
     Given download:
       | path                             | url                                               |
-      | {CACHE_DIR}/white-200-square.bmp | http://wp-cli.org/behat-data/white-200-square.bmp |
+      | {CACHE_DIR}/white-160-square.bmp | http://wp-cli.org/behat-data/white-160-square.bmp |
     And a wp-content/mu-plugins/media-settings.php file:
       """
       <?php
