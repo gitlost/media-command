@@ -63,4 +63,4 @@ addons:
   apt:
     packages:
     - ghostscript
-    - imagick
+    - php-imagick
