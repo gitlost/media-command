@@ -808,7 +808,7 @@ class Media_Command extends WP_CLI_Command {
 			}
 		}
 
-		// Check here that not PDF (as filter not applied in core if not) and `$metadata` is array (as may not be and filter only applied in core when is).
+		// Check here that not PDF (as filter not applied in core if is) and `$metadata` is array (as may not be and filter only applied in core when is).
 		if ( ! $is_pdf && is_array( $metadata ) ) {
 			$sizes = apply_filters( 'intermediate_image_sizes_advanced', $sizes, $metadata );
 		}
