@@ -27,6 +27,8 @@ install_imagemagick() {
 	cd "$TRAVIS_BUILD_DIR"
 }
 
+PATH="$HOME/opt/$WP_VERSION/$TRAVIS_PHP_VERSION/bin:$PATH" identify -version
+
 # Install ImageMagick if the current version isn't up to date.
 PATH="$HOME/opt/$WP_VERSION/$TRAVIS_PHP_VERSION/bin:$PATH" identify -version | grep "$IMAGEMAGICK_VERSION" || install_imagemagick
 
